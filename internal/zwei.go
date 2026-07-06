@@ -2,19 +2,19 @@ package zwei
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/heliannuuthus/aegis-go/guard"
-	reqr "github.com/heliannuuthus/aegis-go/guard/requirement"
-	"github.com/heliannuuthus/aegis-go/utilities/relation"
 	"gorm.io/gorm"
 
-	zweiconfig "github.com/heliannuuthus/helios/zwei/config"
-	"github.com/heliannuuthus/helios/zwei/internal/favorite"
-	"github.com/heliannuuthus/helios/zwei/internal/history"
-	"github.com/heliannuuthus/helios/zwei/internal/home"
-	"github.com/heliannuuthus/helios/zwei/internal/preference"
-	"github.com/heliannuuthus/helios/zwei/internal/recipe"
-	"github.com/heliannuuthus/helios/zwei/internal/recommend"
-	"github.com/heliannuuthus/helios/zwei/internal/tag"
+	"github.com/heliannuuthus/pkg/aegis/guard"
+	reqr "github.com/heliannuuthus/pkg/aegis/guard/requirement"
+	"github.com/heliannuuthus/pkg/aegis/utilities/relation"
+	zweiconfig "github.com/heliannuuthus/zwei/config"
+	"github.com/heliannuuthus/zwei/internal/favorite"
+	"github.com/heliannuuthus/zwei/internal/history"
+	"github.com/heliannuuthus/zwei/internal/home"
+	"github.com/heliannuuthus/zwei/internal/preference"
+	"github.com/heliannuuthus/zwei/internal/recipe"
+	"github.com/heliannuuthus/zwei/internal/recommend"
+	"github.com/heliannuuthus/zwei/internal/tag"
 )
 
 type Zwei struct {
