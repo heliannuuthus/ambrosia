@@ -9,9 +9,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/ambrosia/config"
-	"github.com/heliannuuthus/ambrosia/internal/dto"
-	"github.com/heliannuuthus/ambrosia/internal/recipe"
+	"github.com/heliantheon/ambrosia/config"
+	"github.com/heliantheon/ambrosia/internal/dto"
+	"github.com/heliantheon/ambrosia/internal/recipe"
 )
 
 // Handler 首页处理器

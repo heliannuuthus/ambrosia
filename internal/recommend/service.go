@@ -13,12 +13,12 @@ import (
 	"github.com/sashabaranov/go-openai"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/ambrosia/config"
-	"github.com/heliannuuthus/ambrosia/internal/models"
-	"github.com/heliannuuthus/ambrosia/internal/tag"
-	"github.com/heliannuuthus/common/amap"
-	"github.com/heliannuuthus/common/helpers"
-	"github.com/heliannuuthus/common/logger"
+	"github.com/heliantheon/ambrosia/config"
+	"github.com/heliantheon/ambrosia/internal/models"
+	"github.com/heliantheon/ambrosia/internal/tag"
+	"github.com/heliantheon/common/amap"
+	"github.com/heliantheon/common/helpers"
+	"github.com/heliantheon/common/logger"
 )
 
 // Service 推荐服务

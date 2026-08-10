@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/aegis-go/guard"
-	"github.com/heliannuuthus/ambrosia/internal/dto"
+	"github.com/heliantheon/aegis-go/guard"
+	"github.com/heliantheon/ambrosia/internal/dto"
 )
 
 // Handler 浏览历史处理器

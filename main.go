@@ -5,11 +5,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/heliannuuthus/aegis-go/guard"
-	ambrosiaconfig "github.com/heliannuuthus/ambrosia/config"
-	ambrosia "github.com/heliannuuthus/ambrosia/internal"
-	"github.com/heliannuuthus/common/config"
-	"github.com/heliannuuthus/common/logger"
+	"github.com/heliantheon/aegis-go/guard"
+	ambrosiaconfig "github.com/heliantheon/ambrosia/config"
+	ambrosia "github.com/heliantheon/ambrosia/internal"
+	"github.com/heliantheon/common/config"
+	"github.com/heliantheon/common/logger"
 )
 
 // @title Helios API

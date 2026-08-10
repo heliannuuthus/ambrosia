@@ -6,8 +6,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/ambrosia/internal/models"
-	"github.com/heliannuuthus/ambrosia/internal/tag"
+	"github.com/heliantheon/ambrosia/internal/models"
+	"github.com/heliantheon/ambrosia/internal/tag"
 )
 
 // Service 用户偏好服务
