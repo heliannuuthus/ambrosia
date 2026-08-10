@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/heliannuuthus/ambrosia/internal/models"
+import "github.com/heliantheon/ambrosia/internal/models"
 
 type RecipeListItem struct {
 	ID               string      `json:"id"`

@@ -7,9 +7,9 @@ import (
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/aegis-go/guard"
-	"github.com/heliannuuthus/ambrosia/internal/tag"
-	"github.com/heliannuuthus/common/logger"
+	"github.com/heliantheon/aegis-go/guard"
+	"github.com/heliantheon/ambrosia/internal/tag"
+	"github.com/heliantheon/common/logger"
 )
 
 // Handler 用户偏好处理器

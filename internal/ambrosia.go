@@ -6,17 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/aegis-go/guard"
-	reqr "github.com/heliannuuthus/aegis-go/guard/requirement"
-	"github.com/heliannuuthus/aegis-go/utilities/relation"
-	ambrosiaconfig "github.com/heliannuuthus/ambrosia/config"
-	"github.com/heliannuuthus/ambrosia/internal/favorite"
-	"github.com/heliannuuthus/ambrosia/internal/history"
-	"github.com/heliannuuthus/ambrosia/internal/home"
-	"github.com/heliannuuthus/ambrosia/internal/preference"
-	"github.com/heliannuuthus/ambrosia/internal/recipe"
-	"github.com/heliannuuthus/ambrosia/internal/recommend"
-	"github.com/heliannuuthus/ambrosia/internal/tag"
+	"github.com/heliantheon/aegis-go/guard"
+	reqr "github.com/heliantheon/aegis-go/guard/requirement"
+	"github.com/heliantheon/aegis-go/utilities/relation"
+	ambrosiaconfig "github.com/heliantheon/ambrosia/config"
+	"github.com/heliantheon/ambrosia/internal/favorite"
+	"github.com/heliantheon/ambrosia/internal/history"
+	"github.com/heliantheon/ambrosia/internal/home"
+	"github.com/heliantheon/ambrosia/internal/preference"
+	"github.com/heliantheon/ambrosia/internal/recipe"
+	"github.com/heliantheon/ambrosia/internal/recommend"
+	"github.com/heliantheon/ambrosia/internal/tag"
 )
 
 type Ambrosia struct {

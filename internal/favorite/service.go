@@ -6,7 +6,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/ambrosia/internal/models"
+	"github.com/heliantheon/ambrosia/internal/models"
 )
 
 // Service 收藏服务
