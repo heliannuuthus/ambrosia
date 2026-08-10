@@ -70,9 +70,9 @@ func (z *Zwei) RegisterRoutes(r gin.IRouter) {
 	aud := zweiconfig.GetAegisAudience()
 	adminReqr := z.guard.Require(reqr.Relation(relation.Qualify("admin", "service:"+aud)))
 
-	zwei := r.Group("/zwei")
+	api := r.Group("/api")
 
-	recipes := zwei.Group("/recipes")
+	recipes := api.Group("/recipes")
 	{
 		recipes.GET("", z.recipeHandler.GetRecipes)
 		recipes.GET("/categories/list", z.recipeHandler.GetCategories)
@@ -83,7 +83,7 @@ func (z *Zwei) RegisterRoutes(r gin.IRouter) {
 		recipes.DELETE("/:recipe_id", adminReqr, z.recipeHandler.DeleteRecipe)
 	}
 
-	user := zwei.Group("/user")
+	user := api.Group("/user")
 	user.Use(z.guard.Require(reqr.User()))
 	{
 		favorites := user.Group("/favorites")
@@ -110,16 +110,16 @@ func (z *Zwei) RegisterRoutes(r gin.IRouter) {
 		}
 	}
 
-	homeGroup := zwei.Group("/home")
+	homeGroup := api.Group("/home")
 	{
 		homeGroup.GET("/banners", z.homeHandler.GetBanners)
 		homeGroup.GET("/recommend", z.homeHandler.GetRecommendRecipes)
 		homeGroup.GET("/hot", z.homeHandler.GetHotRecipes)
 	}
 
-	zwei.GET("/preferences", z.preferenceHandler.GetOptions)
+	api.GET("/preferences", z.preferenceHandler.GetOptions)
 
-	tags := zwei.Group("/tags")
+	tags := api.Group("/tags")
 	{
 		tags.GET("", z.tagHandler.ListTags)
 		tags.GET("/:type", z.tagHandler.GetTagsByType)
@@ -128,7 +128,7 @@ func (z *Zwei) RegisterRoutes(r gin.IRouter) {
 		tags.DELETE("/:type/:value", adminReqr, z.tagHandler.DeleteTag)
 	}
 
-	recommendGroup := zwei.Group("/recommend")
+	recommendGroup := api.Group("/recommend")
 	{
 		recommendGroup.POST("", z.recommendHandler.GetRecommendations)
 		recommendGroup.POST("/context", z.guard.Require(reqr.User()), z.recommendHandler.GetContext)
