@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/pkg/aegis/guard"
-	"github.com/heliannuuthus/zwei/internal/dto"
+	"github.com/heliannuuthus/aegis-go/guard"
+	"github.com/heliannuuthus/ambrosia/internal/dto"
 )
 
 // Handler 收藏处理器

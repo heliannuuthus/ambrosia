@@ -1,16 +1,15 @@
--- Zwei 数据库 Schema（业务数据）
+-- Ambrosia 数据库 Schema（业务数据）
 -- MySQL 语法
 -- 无外键约束，在应用层处理关联关系
 -- 所有表主键统一为 _id (INT AUTO_INCREMENT)
 
 -- ==================== 数据库初始化 ====================
--- 创建 zwei 数据库（如果不存在）
+-- 物理数据库名暂保留 zwei，避免服务改名时切换到空数据集。
 CREATE DATABASE IF NOT EXISTS `zwei` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 GRANT ALL PRIVILEGES ON `zwei`.* TO 'helios'@'%';
 FLUSH PRIVILEGES;
 
--- 使用 zwei 数据库
 USE `zwei`;
 
 -- ==================== 用户偏好相关 ====================
@@ -34,7 +33,7 @@ CREATE TABLE IF NOT EXISTS t_user_preference (
 -- 菜谱主表
 CREATE TABLE IF NOT EXISTS t_recipe (
     _id                 INT AUTO_INCREMENT PRIMARY KEY,
-    recipe_id           VARCHAR(32) NOT NULL COMMENT 'Base62 随机 ID（对外 ID，22位）',
+    recipe_id           VARCHAR(32) NOT NULL COMMENT '由源文件路径生成的稳定 32 位 ID',
     name                VARCHAR(128) NOT NULL COMMENT '菜名',
     description         TEXT COMMENT '描述',
     images              TEXT COMMENT '图片列表 (JSON 数组)，第一张为主图',
@@ -58,7 +57,8 @@ CREATE TABLE IF NOT EXISTS t_ingredient (
     name            VARCHAR(64) NOT NULL COMMENT '食材名称',
     category        VARCHAR(32) COMMENT '关联 ingredient_category.key',
     quantity        DOUBLE COMMENT '数量',
-    unit            VARCHAR(64) NOT NULL COMMENT '单位',
+    unit            VARCHAR(64) COMMENT '标准化单位',
+    text_quantity   VARCHAR(128) NOT NULL COMMENT '原始文本用量',
     notes           TEXT COMMENT '备注',
     created_at      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at      DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

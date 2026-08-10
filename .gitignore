@@ -1,3 +1,6 @@
 # Local service config files may contain secrets.
 *.toml
 !example.toml
+build/
+__pycache__/
+*.py[cod]

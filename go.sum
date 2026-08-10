@@ -56,6 +56,14 @@ github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MG
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
+github.com/heliannuuthus/aegis-go/guard v0.0.2-0.20260810152503-0b75cc8e9df3 h1:eMcqLH0TfEvvKdRtzFWK4K0uMZ2xB/dCPQheSxeQp8M=
+github.com/heliannuuthus/aegis-go/guard v0.0.2-0.20260810152503-0b75cc8e9df3/go.mod h1:BDygDKW9GHdvEHukPNWn8WJ8nbNoTR8aQ5l2qA2sX8Y=
+github.com/heliannuuthus/aegis-go/service v0.0.2-0.20260810151700-2ab76612b78a h1:eBbZ+qKyTrefx0IikpPRLkQt4flMNVpqyGSUaNK+TN0=
+github.com/heliannuuthus/aegis-go/service v0.0.2-0.20260810151700-2ab76612b78a/go.mod h1:/+k11XeCTMhIDDtEpGxGwbj3S7Oa0DpGwojKz+Fjtm4=
+github.com/heliannuuthus/aegis-go/utilities v0.0.2-0.20260810152503-0b75cc8e9df3 h1:GJzNvlDHp9Wf+kya7m9VLm+Ejlk5llaYtTNpoBbhcbc=
+github.com/heliannuuthus/aegis-go/utilities v0.0.2-0.20260810152503-0b75cc8e9df3/go.mod h1:kLk1yR1GjJXw9AOl0wxgBftBlOTKBfHrwNxOgCUDSD8=
+github.com/heliannuuthus/common v0.0.0-20260810152613-bd9e82df33d1 h1:5eDS0JaqBU2Tv9do6pVkYiUBJaUolUUCr3XNX0XyQQc=
+github.com/heliannuuthus/common v0.0.0-20260810152613-bd9e82df33d1/go.mod h1:fEBBCb+bYomk1l3pEz6Y5BGv1OIwJbUj1HW9HWiCCz4=
 github.com/invopop/jsonschema v0.14.0 h1:MHQqLhvpNUZfw+hM3AZDYK7jxO8FZoQeQM77g8iyZjg=
 github.com/invopop/jsonschema v0.14.0/go.mod h1:ygm6C2EaVNMBDPpaPlnOA2pFAxBnxGjFlMZABxm9n2I=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
