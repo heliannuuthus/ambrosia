@@ -7,7 +7,7 @@ import (
 	"github.com/dgraph-io/ristretto/v2"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/zwei/internal/models"
+	"github.com/heliannuuthus/ambrosia/internal/models"
 )
 
 const (

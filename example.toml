@@ -1,5 +1,5 @@
 [app]
-name = "Zwei"
+name = "Ambrosia"
 version = "dev"
 debug = true
 
@@ -15,7 +15,7 @@ port = 18000
 url = "mysql://helios:helios@127.0.0.1:3306/zwei?charset=utf8mb4&parseTime=true&loc=Local&timeout=10s&readTimeout=30s&writeTimeout=30s"
 
 [aegis]
-audience = "zwei"
+audience = "ambrosia"
 issuer = "https://aegis.heliannuuthus.com/api"
 # 由 scripts/initialize-hermes.py 生成。
 secret-key = ""

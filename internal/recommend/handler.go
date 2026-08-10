@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 
-	"github.com/heliannuuthus/pkg/aegis/guard"
-	"github.com/heliannuuthus/pkg/logger"
-	"github.com/heliannuuthus/zwei/internal/dto"
+	"github.com/heliannuuthus/aegis-go/guard"
+	"github.com/heliannuuthus/ambrosia/internal/dto"
+	"github.com/heliannuuthus/common/logger"
 )
 
 // Handler 推荐处理器
