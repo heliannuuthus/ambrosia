@@ -1,8 +1,19 @@
-# Ambrosia
+<p align="center">
+  <img src="./assets/brand/mark.svg" width="112" alt="Ambrosia logo" />
+</p>
 
-Ambrosia is the recipe and recommendation backend used by Zwei. It serves recipes, tags, favorites, viewing history, preferences, and contextual meal recommendations.
+<h1 align="center">Ambrosia</h1>
 
-The service name and OAuth audience are `ambrosia`. The database remains named `zwei` for data compatibility.
+<p align="center">
+  <strong>Recipe catalog and contextual meal recommendations for Zwei.</strong><br />
+  为 Zwei 提供菜谱目录与场景化餐食推荐。
+</p>
+
+## Overview / 项目简介
+
+Ambrosia serves recipes, tags, favorites, viewing history, dietary preferences, and recommendation context. The service name and OAuth audience are `ambrosia`; the existing PostgreSQL database remains named `zwei` for compatibility.
+
+Ambrosia 是 Zwei 的后端服务，负责菜谱、标签、收藏、浏览历史、饮食偏好和推荐上下文。为兼容既有部署，物理数据库名称继续使用 `zwei`。
 
 ## Run locally
 
@@ -15,14 +26,12 @@ PostgreSQL and an Aegis service key are required. OpenRouter and AMap credential
 
 ## Recipe dataset
 
-The database can be populated from the published HowToCook dataset:
-
 ```bash
 python3 -m pip install -r scripts/requirements.txt
 make initialize-ambrosia
 ```
 
-Set `AMBROSIA_DB_URL` or provide `config.toml`. The initializer validates the manifest and payload checksum before writing anything.
+The initializer validates the published HowToCook manifest and payload checksum before writing data.
 
 ## Development
 

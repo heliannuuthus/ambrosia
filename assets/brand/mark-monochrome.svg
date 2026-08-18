@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="ambrosia-title">
+  <title id="ambrosia-title">Ambrosia mark</title>
+  <g fill="none" stroke="#111827" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M50 106h156c-6 44-34 70-78 70s-72-26-78-70z"/>
+  <path d="M128 176v30"/>
+  <path d="M96 218h64"/>
+  <path d="M70 88c10-18 24-28 42-30-2 18-12 30-30 38"/>
+  <path d="M186 88c-10-18-24-28-42-30 2 18 12 30 30 38"/>
+  <path d="m128 24 8 16 16 8-16 8-8 16-8-16-16-8 16-8z" fill="#111827" stroke="none"/>
+  </g>
+</svg>
