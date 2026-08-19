@@ -1,1 +1,1 @@
-PyMySQL
+psycopg[binary]
