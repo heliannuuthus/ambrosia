@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download the Ambrosia recipe dataset and seed it into MySQL."""
+"""Download the Ambrosia recipe dataset and seed it into PostgreSQL."""
 
 from __future__ import annotations
 
@@ -55,7 +55,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--database-url",
         default=os.getenv("AMBROSIA_DB_URL", ""),
-        help="MySQL URL. Defaults to AMBROSIA_DB_URL or config.toml.",
+        help="PostgreSQL URL. Defaults to AMBROSIA_DB_URL or config.toml.",
     )
     parser.add_argument(
         "--config",
@@ -148,43 +148,21 @@ def load_database_url(explicit_url: str, config_path: Path) -> str:
 
 def connect_database(database_url: str) -> Any:
     try:
-        import pymysql
+        import psycopg
     except ImportError as error:
         raise RecipeSeedError(
-            "PyMySQL is required; run: pip install -r scripts/requirements.txt"
+            "psycopg is required; run: pip install -r scripts/requirements.txt"
         ) from error
 
     parsed = urllib.parse.urlsplit(database_url)
-    if parsed.scheme != "mysql" or not parsed.hostname:
-        raise RecipeSeedError("database URL must use mysql://user:password@host/db")
-    database = parsed.path.lstrip("/")
-    if not database:
+    if parsed.scheme != "postgres" or not parsed.hostname:
+        raise RecipeSeedError("database URL must use postgres://user:password@host/db")
+    if not parsed.path.lstrip("/"):
         raise RecipeSeedError("database URL must include a database name")
-    query = {
-        key.casefold(): values[-1]
-        for key, values in urllib.parse.parse_qs(parsed.query).items()
-    }
-
-    def timeout(name: str, fallback: int) -> int:
-        try:
-            return int(query.get(name.casefold(), fallback))
-        except (TypeError, ValueError):
-            return fallback
 
     try:
-        return pymysql.connect(
-            host=parsed.hostname,
-            port=parsed.port or 3306,
-            user=urllib.parse.unquote(parsed.username or ""),
-            password=urllib.parse.unquote(parsed.password or ""),
-            database=database,
-            charset=query.get("charset", "utf8mb4"),
-            connect_timeout=timeout("timeout", 10),
-            read_timeout=timeout("readtimeout", 30),
-            write_timeout=timeout("writetimeout", 30),
-            autocommit=False,
-        )
-    except (ValueError, pymysql.MySQLError) as error:
+        return psycopg.connect(database_url)
+    except psycopg.Error as error:
         raise RecipeSeedError(f"connect database: {error}") from error
 
 
@@ -221,16 +199,16 @@ INSERT INTO t_recipe (
     recipe_id, name, description, images, category, difficulty, servings,
     prep_time_minutes, cook_time_minutes, total_time_minutes
 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-ON DUPLICATE KEY UPDATE
-    name = VALUES(name),
-    description = VALUES(description),
-    images = VALUES(images),
-    category = VALUES(category),
-    difficulty = VALUES(difficulty),
-    servings = VALUES(servings),
-    prep_time_minutes = VALUES(prep_time_minutes),
-    cook_time_minutes = VALUES(cook_time_minutes),
-    total_time_minutes = VALUES(total_time_minutes)
+ON CONFLICT (recipe_id) DO UPDATE SET
+    name = EXCLUDED.name,
+    description = EXCLUDED.description,
+    images = EXCLUDED.images,
+    category = EXCLUDED.category,
+    difficulty = EXCLUDED.difficulty,
+    servings = EXCLUDED.servings,
+    prep_time_minutes = EXCLUDED.prep_time_minutes,
+    cook_time_minutes = EXCLUDED.cook_time_minutes,
+    total_time_minutes = EXCLUDED.total_time_minutes
 """
 
 
@@ -307,22 +285,22 @@ def upsert_recipe(cursor: Any, source: dict[str, Any]) -> None:
             cursor.execute(
                 """
                 INSERT INTO t_tag (value, label, type) VALUES (%s, %s, %s)
-                ON DUPLICATE KEY UPDATE label = VALUES(label), updated_at = CURRENT_TIMESTAMP
+                ON CONFLICT (type, value) DO UPDATE SET label = EXCLUDED.label, updated_at = CURRENT_TIMESTAMP
                 """,
                 (label, label, tag_type),
             )
             cursor.execute(
                 """
-                INSERT IGNORE INTO t_recipe_tag (recipe_id, tag_value, tag_type)
+                INSERT INTO t_recipe_tag (recipe_id, tag_value, tag_type)
                 VALUES (%s, %s, %s)
+                ON CONFLICT (recipe_id, tag_value, tag_type) DO NOTHING
                 """,
                 (recipe_id, label, tag_type),
             )
 
 
 def seed_database(connection: Any, recipes: list[dict[str, Any]]) -> int:
-    try:
-        connection.begin()
+    with connection.transaction():
         with connection.cursor() as cursor:
             for source in recipes:
                 try:
@@ -330,10 +308,6 @@ def seed_database(connection: Any, recipes: list[dict[str, Any]]) -> int:
                 except Exception as error:
                     path = source.get("path", "<unknown>")
                     raise RecipeSeedError(f"{path}: {error}") from error
-        connection.commit()
-    except Exception:
-        connection.rollback()
-        raise
     return len(recipes)
 
 

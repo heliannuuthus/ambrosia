@@ -14,7 +14,11 @@ func (s StringSlice) Value() (driver.Value, error) {
 	if s == nil {
 		return "[]", nil
 	}
-	return json.Marshal(s)
+	b, err := json.Marshal(s)
+	if err != nil {
+		return nil, err
+	}
+	return string(b), nil
 }
 
 func (s *StringSlice) Scan(value interface{}) error {
@@ -42,7 +46,7 @@ type Recipe struct {
 	RecipeID         string      `gorm:"uniqueIndex;not null;column:recipe_id;size:32" json:"id"`
 	Name             string      `gorm:"uniqueIndex;not null;size:128" json:"name"`
 	Description      *string     `gorm:"type:text" json:"description"`
-	Images           StringSlice `gorm:"type:json;default:'[]'" json:"images"`
+	Images           StringSlice `gorm:"type:jsonb;default:'[]'" json:"images"`
 	Category         string      `gorm:"index" json:"category"`
 	Difficulty       int         `json:"difficulty"`
 	Servings         int         `json:"servings"`

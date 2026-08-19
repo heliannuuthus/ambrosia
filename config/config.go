@@ -4,7 +4,6 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"net/url"
 	"strings"
 
 	"gorm.io/gorm"
@@ -73,7 +72,7 @@ func GetAegisSecretKeyBytes() ([]byte, error) {
 // InitDB 初始化 Ambrosia 数据库连接
 func InitDB() *gorm.DB {
 	cfg := Cfg()
-	dsn := parseDSNFromURL(cfg.GetString("db.url"))
+	dsn := cfg.GetString("db.url")
 
 	db, err := pkgdb.Connect(dsn)
 	if err != nil {
@@ -81,25 +80,4 @@ func InitDB() *gorm.DB {
 	}
 	logger.Infof("数据库连接成功 (ambrosia)")
 	return db
-}
-
-// parseDSNFromURL 将 mysql://user:pass@host:port/db?params 格式转换为 Go MySQL DSN 格式
-func parseDSNFromURL(dbURL string) string {
-	if !strings.HasPrefix(dbURL, "mysql://") {
-		return dbURL
-	}
-	u, err := url.Parse(dbURL)
-	if err != nil {
-		logger.Fatalf("解析数据库 URL 失败: %v", err)
-	}
-	user := u.User.Username()
-	password, _ := u.User.Password()
-	host := u.Host
-	database := strings.TrimPrefix(u.Path, "/")
-	query := u.RawQuery
-	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s", user, password, host, database)
-	if query != "" {
-		dsn += "?" + query
-	}
-	return dsn
 }

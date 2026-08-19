@@ -2,7 +2,7 @@
 
 Ambrosia is the recipe and recommendation backend used by Zwei. It serves recipes, tags, favorites, viewing history, preferences, and contextual meal recommendations.
 
-The service name and OAuth audience are `ambrosia`. The MySQL database remains named `zwei` so existing deployments do not need a data migration.
+The service name and OAuth audience are `ambrosia`. The database remains named `zwei` for data compatibility.
 
 ## Run locally
 
@@ -11,7 +11,7 @@ cp example.toml config.toml
 make run
 ```
 
-MySQL and an Aegis service key are required. OpenRouter and AMap credentials are needed only for recommendation features that call those providers.
+PostgreSQL and an Aegis service key are required. OpenRouter and AMap credentials are needed only for recommendation features that call those providers.
 
 ## Recipe dataset
 
