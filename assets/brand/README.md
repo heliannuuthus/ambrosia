@@ -1,6 +1,6 @@
 # Ambrosia brand assets
 
-The Ambrosia mark belongs to the shared Heliantheon visual family: geometric construction, rounded strokes, strong negative space, and a single product accent.
+The Ambrosia mark follows a shared visual language: geometric construction, rounded strokes, strong negative space, and a single product accent.
 
 | File | Purpose |
 | --- | --- |
