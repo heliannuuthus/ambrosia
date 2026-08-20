@@ -6,7 +6,7 @@ This repository owns the recipe and recommendation backend consumed by Zwei.
 
 - The backend service, Go module, OAuth audience, and environment prefix are `ambrosia`.
 - The client application remains Zwei.
-- The physical PostgreSQL database remains `zwei` for data compatibility.
+- The physical PostgreSQL database is `ambrosia`, matching the service name.
 
 ## Commands
 

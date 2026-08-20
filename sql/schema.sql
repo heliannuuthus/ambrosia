@@ -4,11 +4,10 @@
 -- 所有表主键统一为 _id (BIGSERIAL)
 
 -- ==================== 数据库初始化 ====================
--- 物理数据库名暂保留 zwei，避免服务改名时切换到空数据集。
 
-SELECT 'CREATE DATABASE zwei'
-WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'zwei')\gexec
-\connect zwei
+SELECT 'CREATE DATABASE ambrosia'
+WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'ambrosia')\gexec
+\connect ambrosia
 
 -- ==================== 用户偏好相关 ====================
 
